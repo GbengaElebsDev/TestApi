@@ -10,7 +10,7 @@ services:
   #DataBase Service
   database:
     #Pull the latest mysql image
-    image: mysql:latest
+    image: mysql:8.0.22
     #Map port 3306 on the mysql container to port 3306 in the host
     ports:
       - "3306:3306"
