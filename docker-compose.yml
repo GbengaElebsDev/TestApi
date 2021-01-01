@@ -21,14 +21,13 @@ services:
     restart: always
     #Specify Environment Variables for mysql
     environment: 
-      MYSQL_ROOT_PASSWORD: global@accelerex
+      MYSQL_ROOT_PASSWORD: Root0++
       MYSQL_USER: newuser
       MYSQL_PASSWORD: pass@word1234
       MYSQL_DATABASE: Usersdb
   #Api  Service
   api:
     build:
-      #Build Context should be in the Current Directory
       context: .
       #Use the DockerFile in that Directory
       dockerfile: Dockerfile
