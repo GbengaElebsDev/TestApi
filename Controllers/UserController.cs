@@ -55,7 +55,7 @@ namespace TestApi.Controllers
             }
             catch (Exception)
             {
-                return BadRequest("Unable To Process Request");
+                return StatusCode(500, "Unable To Process Request");
             }
         }
 
@@ -87,9 +87,9 @@ namespace TestApi.Controllers
                     return BadRequest("Unable To  User");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(string.Format(ex.ToString()));
+                return StatusCode(500, "Unable To Process Request");
             }
         }
     }
