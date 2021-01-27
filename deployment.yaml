@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: testapi-pod
+  template:
+    metadata:
+      labels:
+        app: testapi-pod
+    spec:
+      containers:
+      - name: testapi-container
+        image: testapi_api
+        imagePullPolicy: Never
+        env:
+          - name: DBHOST
+            value: mysql8-service
+          - name: MYSQL_USER
+            value: newuser
+          - name: MYSQL_PASSWORD
+            value: pass@word1234
+          - name: MYSQL_DATABASE
+            value: Usersdb
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

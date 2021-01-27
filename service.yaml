@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: testapi-service
+  labels:
+    run: testapi-service
+spec:
+  selector:
+    app: testapi-pod
+  ports:
+  - port: 8080
+    targetPort: 80
+    protocol: TCP
+  type: LoadBalancer
