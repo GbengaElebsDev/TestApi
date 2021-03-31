@@ -13,8 +13,8 @@ spec:
     spec:
       containers:
       - name: testapi-container
-        image: testapi_api
-        imagePullPolicy: Never
+        image: gbengaelebs.azurecr.io/testapi_api
+        # imagePullPolicy: Never
         env:
           - name: DBHOST
             value: mysql8-service
