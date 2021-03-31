@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: testapiapi 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testapiapi
+  template:
+    metadata:
+      labels:
+        app: testapiapi 
+    spec:
+      containers:
+        - name: testapiapi 
+          image: gbengaelebs.azurecr.io/testapiapi
+          ports:
+          - containerPort: 80/tcp
