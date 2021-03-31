@@ -20,7 +20,7 @@ variables:
   mysqltag: '8.0.22'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'UbuntuAgentPool'
 
 
 stages:
