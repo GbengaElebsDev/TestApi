@@ -12,7 +12,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'a9efe307-cc83-4e90-9447-32268283c490'
-  imageRepository: 'testapi-api'
+  imageRepository: 'testapi_api'
   imageRepository2: 'mysql'
   containerRegistry: 'gbengaelebs.azurecr.io'
   dockerfilePath: '**/Dockerfile'
