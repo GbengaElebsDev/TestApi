@@ -20,7 +20,7 @@ variables:
   mysqltag: '8.0.22'
 
   # Agent VM image name
-  vmImageName: 'My-Ubuntu-Agent'
+  # vmImageName: 'My-Ubuntu-Agent'
 
 
 stages:
@@ -30,7 +30,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      My-Ubuntu-Agent
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
@@ -62,7 +62,7 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     pool:
-      vmImage: $(vmImageName)
+      My-Ubuntu-Agent
     environment: 'GbengaElebsDevAksTutorial-3184.default'
     strategy:
       runOnce:
