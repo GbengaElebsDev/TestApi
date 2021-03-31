@@ -71,9 +71,9 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/mysql-pv-claim.yml
-                $(Pipeline.Workspace)/manifests/mysqlDeployment.yml
-                $(Pipeline.Workspace)/manifests/mysqlService.yml
+                $(Pipeline.Workspace)/manifests/mysql-pv-claim.yaml
+                $(Pipeline.Workspace)/manifests/mysqlDeployment.yaml
+                $(Pipeline.Workspace)/manifests/mysqlService.yaml
               containers: |
                 $(containerRegistry)/$(imageRepository2):$(mysqltag)
           - task: KubernetesManifest@0
@@ -81,8 +81,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                $(Pipeline.Workspace)/manifests/deployment.yaml
+                $(Pipeline.Workspace)/manifests/service.yaml
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
 
