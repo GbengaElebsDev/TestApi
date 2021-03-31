@@ -5,8 +5,6 @@
 trigger:
 - main
 
-resources:
-- repo: self
 
 variables:
 
