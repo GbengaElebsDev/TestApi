@@ -13,11 +13,11 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'a9efe307-cc83-4e90-9447-32268283c490'
   imageRepository: 'testapi_api'
-  # imageRepository2: 'mysql'
+  imageRepository2: 'mysql'
   containerRegistry: 'gbengaelebs.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildNumber)'
-  # mysqltag: '8.0.22'
+  mysqltag: '8.0.22'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -41,15 +41,15 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    # - task: Docker@2
-    #   displayName: Build and push an image to container registry
-    #   inputs:
-    #     command: buildAndPush
-    #     repository: $(imageRepository2)
-    #     dockerfile: $(dockerfilePath)
-    #     containerRegistry: $(dockerRegistryServiceConnection)
-    #     tags: |
-    #       $(mysqltag)
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository2)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(mysqltag)
 
     - publish: manifests
       artifact: manifests
@@ -68,16 +68,16 @@ stages:
       runOnce:
         deploy:
           steps:
-          # - task: KubernetesManifest@0
-          #   displayName: Deploy to Kubernetes cluster
-          #   inputs:
-          #     action: deploy
-          #     manifests: |
-          #       $(Pipeline.Workspace)/manifests/mysql-pv-claim.yml
-          #       $(Pipeline.Workspace)/manifests/mysqlDeployment.yml
-          #       $(Pipeline.Workspace)/manifests/mysqlService.yml
-          #     containers: |
-          #       $(containerRegistry)/$(imageRepository2):$(mysqltag)
+          - task: KubernetesManifest@0
+            displayName: Deploy to Kubernetes cluster
+            inputs:
+              action: deploy
+              manifests: |
+                $(Pipeline.Workspace)/manifests/mysql-pv-claim.yml
+                $(Pipeline.Workspace)/manifests/mysqlDeployment.yml
+                $(Pipeline.Workspace)/manifests/mysqlService.yml
+              containers: |
+                $(containerRegistry)/$(imageRepository2):$(mysqltag)
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
