@@ -16,7 +16,7 @@ variables:
   imageRepository2: 'mysql'
   containerRegistry: 'gbengaelebs.azurecr.io'
   dockerfilePath: '**/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: '$(Build.BuildNumber)'
   mysqltag: '8.0.22'
 
   # Agent VM image name
